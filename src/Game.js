@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import WordRow from './WordRow';
-import Keyboard from './Keyboard';
 
 const words = ["apple", "grape", "mango", "peach", "berry"]; // Example words
 
 const Game = () => {
   const [currentWord, setCurrentWord] = useState(words[Math.floor(Math.random() * words.length)]);
   const [guesses, setGuesses] = useState(Array(6).fill(''));
-  const [currentGuess, setCurrentGuess] = useState(currentWord[0]);
+  const [currentGuess, setCurrentGuess] = useState('');
   const [gameOver, setGameOver] = useState(false);
   const [message, setMessage] = useState('Vous avez 6 essais pour trouver le mot. Le mot doit commencer par la lettre donnée.');
 
@@ -31,12 +30,10 @@ const Game = () => {
               setMessage('Game Over!');
             }
           }
-          setCurrentGuess(currentWord[0]);
+          setCurrentGuess('');
         }
       } else if (key === 'Backspace') {
-        if (currentGuess.length > 1) {
-          setCurrentGuess(currentGuess.slice(0, -1));
-        }
+        setCurrentGuess(currentGuess.slice(0, -1));
       } else if (currentGuess.length < currentWord.length && /^[a-zA-Z]$/.test(key)) {
         setCurrentGuess(currentGuess + key.toLowerCase());
       }
@@ -47,7 +44,7 @@ const Game = () => {
   }, [currentGuess, guesses, gameOver, currentWord]);
 
   useEffect(() => {
-    console.log("Current word to guess:", currentWord); // Log the word for testing
+    console.log("Current word to guess:", currentWord);
   }, [currentWord]);
 
   return (
@@ -56,10 +53,10 @@ const Game = () => {
       <p>{message}</p>
       <div className="word-rows">
         {guesses.map((guess, index) => (
-          <WordRow id={index} key={index} word={guess} solution={currentWord} />
+          <WordRow key={index} word={guess} solution={currentWord} isFirstRow={index === 0} />
         ))}
         {!gameOver && (
-          <WordRow id="1" word={currentGuess} solution={currentWord} isCurrentGuess />
+          <WordRow word={currentGuess} solution={currentWord} isFirstRow={guesses.findIndex(g => g === '') === -1} isCurrentGuess />
         )}
       </div>
       {gameOver && (

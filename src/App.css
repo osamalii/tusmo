@@ -1,42 +1,60 @@
+/* General game container styling */
 .game {
   text-align: center;
+  font-family: 'Arial', sans-serif;
+  margin-top: 50px;
 }
 
+/* Styling for word rows */
 .word-row {
   display: flex;
   justify-content: center;
   margin: 10px 0;
 }
 
+/* General styling for letter boxes */
 .letter-box {
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
+  width: 50px;  /* Increased size for better visibility */
+  height: 50px;
+  line-height: 50px;
   margin: 0 5px;
   text-align: center;
   font-size: 24px;
-  border: 2px solid #000;
+  border: 2px solid #ddd;
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
 }
 
-/* .first-letter{
-  display: none;
-} */
+/* Fixed first letter styling */
+.first-letter {
+  font-weight: bold;
+  border-color: #333; /* Darker border for emphasis */
+  background-color: #f0f0f0; /* Light background */
+}
 
+/* Correct letter styling */
 .correct {
-  background-color: red;
+  background-color: #66bb6a; /* Green for correct */
   color: white;
+  border-color: #4caf50;
 }
 
+/* Close letter styling */
 .close {
-  background-color: yellow;
+  background-color: #ffeb3b; /* Yellow for close */
   color: black;
+  border-color: #fdd835;
 }
 
+/* Incorrect letter styling */
 .incorrect {
-  background-color: blue;
+  background-color: #e57373; /* Red for incorrect */
   color: white;
+  border-color: #e53935;
 }
 
+/* Keyboard container styling */
 .keyboard {
   display: flex;
   flex-wrap: wrap;
@@ -44,8 +62,23 @@
   margin: 20px 0;
 }
 
+/* Keyboard button styling */
 .keyboard button {
   margin: 5px;
-  padding: 10px;
+  padding: 15px 20px; /* Increased padding for better usability */
   font-size: 16px;
+  border: none;
+  border-radius: 5px; /* Rounded corners */
+  background-color: #f0f0f0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  transition: background-color 0.3s; /* Smooth transition */
+  cursor: pointer;
+}
+
+.keyboard button:hover {
+  background-color: #ddd; /* Slightly darker on hover */
+}
+
+.keyboard button:active {
+  background-color: #ccc; /* Even darker on click */
 }
