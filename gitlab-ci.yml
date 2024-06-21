@@ -1,0 +1,22 @@
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  script:
+    - docker compose --profile dev build
+  tags:
+    - job-runner
+
+deploy:
+  stage: deploy
+  script:    
+    - docker compose --profile dev up -d
+  tags:
+    - job-runner
+  only:
+    - main 
+  needs:
+    - build 
+
